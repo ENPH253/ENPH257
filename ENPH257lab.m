@@ -23,17 +23,17 @@ duration = 1000; % seconds
 tic; times = toc; % start time
 
 %% Start apparatus setup
-%if exist('offsets','var') == 0;  
+if exist('offsets','var') == 0;  
     offsets = sensorOffsets(a);
-%end
+end
 
 temps=readTemperatures(a); % initial temperature reading for initialization of array
-writeDigitalPin(a,powerPin,pOn); %turn power resistor on
+writeDigitalPin(a,powerPin,pOff); %turn power resistor on
 
 while toc < duration
     
     times = vertcat(times, toc);
-    temps = vertcat(temps, readTemperatures(a)-offsets); 
+    temps = vertcat(temps, readTemperatures(a)); 
     
     % Turn resistor off at maxTemp
     if temps(end,powerTemp) > maxTemp
