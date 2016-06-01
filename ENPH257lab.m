@@ -10,16 +10,16 @@ l = 304.8; %mm
 % sensor pin 4 (no 5) is at free end
 % sensor pin 5 (no 6) is ambient 
 
-powerTemp = 6;
+powerTemp = 5;
 powerPin = 'D8'; pOn = 1; pOff = 0;
 maxTemp = 50; % C, when reached, power resistor turns off
-delayTime = 0.1; % Time delay between itterations of loop
+delayTime = 0.5; % Time delay between itterations of loop
 
 clear a;
 a = arduino();
 
 %% Time setup
-duration = 1000; % seconds
+duration = 100000; % seconds
 tic; times = toc; % start time
 
 %% Start apparatus setup
@@ -28,7 +28,7 @@ if exist('offsets','var') == 0;
 end
 
 temps=readTemperatures(a); % initial temperature reading for initialization of array
-writeDigitalPin(a,powerPin,pOff); %turn power resistor on
+writeDigitalPin(a,powerPin,pOn); %turn power resistor on
 
 while toc < duration
     
@@ -45,11 +45,21 @@ while toc < duration
     plot(times,temps(:,3),'g-'); 
     plot(times,temps(:,4),'k-'); 
     plot(times,temps(:,5),'m-'); 
-    plot(times,temps(:,6),'c-'); hold off
+    plot(times,temps(:,6),'c-'); 
+    xlabel('time (s)'); ylabel('temperature (C)');
+    legend('1, heated end', '2', '3, center', '4', '5, free end', '6, ambient');
+    hold off
   
     pause(delayTime); 
     
 end
 
 writeDigitalPin(a,powerPin,pOff); %turn power resistor off, safety measure
+
+
+%% Save to file
+ts = datetime('now');
+DateString = datestr(ts,30);
+filename = ['5Wscotchbrite_horizontal' DateString '.csv'];
+csvwrite(filename,[times temps]);
 
