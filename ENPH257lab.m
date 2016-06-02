@@ -29,7 +29,7 @@ while toc < duration
     times = vertcat(times, toc);
     temps = vertcat(temps, readTemperatures(a)); 
     
-    if time < heatingDuration 
+    if toc < heatingDuration 
         % Turn resistor off at maxTemp
         if temps(end,powerTemp) > maxTemp
             writeDigitalPin(a,powerPin,pOff);
