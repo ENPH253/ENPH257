@@ -16,7 +16,7 @@ a = arduino();
 
 %% Time setup
 duration = 20000; % seconds
-heatingDuration = 6000; % seconds
+heatingDuration = 9000; % seconds
 tic; times = toc; % start time
 
 %% Start apparatus setup
