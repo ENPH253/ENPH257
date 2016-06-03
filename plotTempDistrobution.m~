@@ -1,10 +1,13 @@
 function [ ] = plotTempDistrobution( temps, row )
 
-x = [299 228 152 76 5];
+x = [299 288 152 76 5];
+x = [ 5 76 152 288 299];
 
-plot(x,temps(row,1:5), 'ro'); hold on
+
+plot(x,temps(row,1:5)); hold on
 xlabel('Distance along rod (mm)');
 ylabel('Temperature (C)');
 hold off
 
 end
+
