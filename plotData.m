@@ -10,4 +10,3 @@ function [ ] = plotData( times, temps )
     hold off
 
 end
-
