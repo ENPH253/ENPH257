@@ -12,16 +12,18 @@ function [ ] = plotData( times, temps )
     x = [0.299 0.228 0.152 0.076 0.005];
         
     temp = temps(1000, 1:5);
-    
     subplot(1,2,2);
     cs = spline(x,temp);
-    xx = linspace(x(1), x(end) ,100);
+    xx = linspace(1, 5 ,100);
     
-    plot(xx, ppval(cs,xx)); hold on
-    plot(x,temps(1000,1:5), 'ro');
+    plot(xx, ppval(cs,xx));
     xlabel('Distance along rod (mm)');
     ylabel('Temperature (C)');
+    
     hold off
+
+    
+    
 
 hold off
     
