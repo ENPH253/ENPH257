@@ -1,0 +1,10 @@
+readFiles;
+subplot(2,2,1); hold on;
+plotData(timesHB,tempsHB); title('HB');
+subplot(2,2,2); 
+plotData(timesVB,tempsVB); title('VB');
+subplot(2,2,3);
+plotData(timesHS,tempsHS); title('HS');
+subplot(2,2,4);
+plotData(timesVS,tempsVS); title('VS');
+hold off;
